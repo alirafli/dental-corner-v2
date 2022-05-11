@@ -1,5 +1,7 @@
+import Component from "./test/Component"
+
 function App() {
-  return <div>ini app</div>;
+  return <Component />;
 }
 
 export default App;
