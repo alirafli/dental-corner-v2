@@ -16,7 +16,12 @@ const Component = () => {
         </Button>
         <br />
         <h1>Typography</h1>
-        <Header>test</Header>
+        <Header h1>header h1</Header>
+        <Header h2>header h2</Header>
+        <Header h3>header h3</Header>
+        <Header h6>header h6</Header>
+        <Header h7>header h7</Header>
+        <Paragraph b1>Paragraph Body 1</Paragraph>
       </div>
     </>
   );
