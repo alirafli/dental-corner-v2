@@ -26,7 +26,7 @@ import MedicalLog from "../pages/MedicalLog";
 import Booking from "../pages/Booking";
 import Component from "../test/Component";
 import Consultation from "../pages/Consultation";
-import Appointment from "../pages/appointment";
+import Appointment from "../pages/Appointment";
 import ArticleContent from "../pages/ArticleContent";
 import Profile from "../pages/Profile";
 
