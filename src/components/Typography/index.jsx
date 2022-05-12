@@ -15,8 +15,8 @@ export const Header = ({
       className={`${h1 && "text-6xl"} ${h2 && "text-5xl"} ${
         h3 && "text-4xl"
       }   ${h6 ? "text-xl" : ""} ${h7 && "text-base"} ${
-        bold ? "font-semibold" : `${medium ? "font-medium" : "font-normal"}`
-      } ${truncate ? "truncate" : "whitespace-pre-line"} tracking-wider `}
+        bold ? "font-bold" : `${medium ? "font-medium" : "font-normal"}`
+      } ${truncate ? "truncate" : "whitespace-pre-line"} tracking-wider leading-tight`}
       {...otherProps}
     >
       {children}
