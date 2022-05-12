@@ -12,11 +12,8 @@ import {
 
 const Component = () => {
   return (
-    <>
-      <div>
-        <Navbar />
-      </div>
-      <div className="grid grid-rows-1 grid-flow-col gap-4 w-fit ">
+    <div className="mt-24 ml-1 mb-5">
+      <div className="grid grid-rows-1 grid-flow-col gap-4 w-full ">
         <div className="shadow-2xl flex flex-col p-2">
           <h1 className="font-bold mb-5 text-center">button component</h1>
           <Button bold>button primary</Button>
@@ -62,10 +59,7 @@ const Component = () => {
           </Input>
         </div>
       </div>
-      <div>
-        <Footer />
-      </div>
-    </>
+    </div>
   );
 };
 

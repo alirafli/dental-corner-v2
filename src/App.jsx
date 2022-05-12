@@ -1,7 +1,7 @@
-import Component from "./test/Component"
+import RouterConfig from "./navigation/RouterConfig";
 
 function App() {
-  return <Component />;
+  return <RouterConfig />;
 }
 
 export default App;
