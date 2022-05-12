@@ -2,9 +2,12 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      spacing: {
-        "daniel": '100px'
-      }
+      maxWidth: {
+        card: "210px",
+      },
+      minWidth: {
+        monitor: "100vh",
+      },
     },
     colors: {
       transparent: "transparent",
@@ -16,6 +19,7 @@ module.exports = {
       grayLight: "#CBCCCC",
       grayDark: "#191919",
       white: "#FDFDFC",
+      trueWhite: "#fffff",
       black: "#0A0C0B",
       danger: "#EB4335",
       success: "#21BB5E",

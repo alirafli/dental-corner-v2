@@ -24,7 +24,7 @@ export const Button = ({
       ${
         outline ? "outline outline-black outline-1 hover:outline-grayLight" : ""
       }
-      rounded-sm px-3 py-0.5 text-base ease-in duration-200 ${className}`}
+      rounded-md px-4 py-1 text-base ease-in duration-200 ${className} text-center m-1	`}
     >
       {children} {icon}
     </button>
