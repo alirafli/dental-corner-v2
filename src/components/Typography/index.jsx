@@ -7,7 +7,7 @@ export const Header = ({
   h3,
   h6,
   h7,
-  truncate,
+  truncate = false,
   customStyle,
   semiBold,
   ...otherProps
@@ -18,7 +18,7 @@ export const Header = ({
         h3 && "text-4xl"
       }   ${h6 ? "text-xl" : ""} ${h7 && "text-base"} ${
         bold
-          ? "font-bold"
+          ? "font-extrabold"
           : `${
               medium
                 ? "font-medium"
@@ -26,7 +26,7 @@ export const Header = ({
             }`
       } ${
         truncate ? "truncate" : "whitespace-pre-line"
-      } tracking-wider leading-tight ${customStyle}`}
+      } tracking-wider leading-tight  ${customStyle}`}
       {...otherProps}
     >
       {children}
@@ -39,7 +39,7 @@ export const Paragraph = ({
   b1,
   bold,
   medium,
-  truncate,
+  truncate = false,
   h7,
   customStyle,
   semiBold,
@@ -58,7 +58,7 @@ export const Paragraph = ({
             }`
       } ${truncate ? "truncate" : "whitespace-normal"} ${
         h7 && "text-base"
-      } text-justify  ${customStyle}
+      }   ${customStyle}
       `}
       {...otherProps}
     >

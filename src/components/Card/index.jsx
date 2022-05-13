@@ -35,18 +35,24 @@ export const SecondaryCard = ({
   title = "your title",
   content = "your content",
   btnContent = "button content",
+  extra = [],
 }) => {
   return (
-    <div className="container drop-shadow-lg bg-white w-52 max-w-card p-5 rounded-md m-2">
-      <div className="mb-2">
+    <div className="container drop-shadow-lg bg-white w-52 max-w-card p-5 rounded-md m-2 pb-32 mr-10">
+      <div className="mb-5">
         <Header h6 bold>
           {title}
         </Header>
       </div>
       <Paragraph h7 medium>
         {content}
+        <ul class="list-disc ml-4 mt-3">
+          {extra.map((data, i) => (
+            <li key={i}>{data}</li>
+          ))}
+        </ul>
       </Paragraph>
-      <div className="text-center mt-24">
+      <div className="text-center mt-24 absolute bottom-10 left-0 right-0">
         <Button bold>{btnContent}</Button>
       </div>
     </div>
