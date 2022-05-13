@@ -35,7 +35,11 @@ const Consultation = () => {
               input: data.input,
             }))}
           />
-          <Button className="w-2/4 h-10 my-10">Pesan Sekarang</Button>
+          <div className="text-center">
+            <Button className="w-1/2 h-10 my-10 text center">
+              Pesan Sekarang
+            </Button>
+          </div>
         </div>
       </div>
     </div>
