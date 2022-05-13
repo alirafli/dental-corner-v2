@@ -14,7 +14,7 @@ export const PrimaryCard = ({
       <div>
         <div
           className="bg-cover bg-center w-52 h-36 rounded-lg mb-6 mx-auto"
-          style={{ backgroundImage: `url(${DUMMY})` }}
+          style={{ backgroundImage: `url(${image})` }}
         />
       </div>
       <div>
@@ -22,7 +22,7 @@ export const PrimaryCard = ({
           {date}
         </Paragraph>
         <div className="mt-2">
-          <Header h7 bold truncate>
+          <Header h7 bold customStyle="text-left">
             {title}
           </Header>
         </div>
