@@ -2,11 +2,20 @@ import { Label } from "@mui/icons-material";
 import React from "react";
 import { Header, Input, Button, InputSelect } from "../../components";
 
+const dummyLayanan = [
+  { id: 1, value: 1, input: "Scalling" },
+  { id: 2, value: 2, input: "Pencabutan" },
+  { id: 3, value: 3, input: "Penambalan" },
+  { id: 4, value: 4, input: "Orthodontic" },
+  { id: 5, value: 5, input: "Bleaching" },
+];
+
 const dummyData = [
-  { id: 1, value: "a", input: "Dummy A" },
-  { id: 2, value: "b", input: "Dummy B" },
-  { id: 3, value: "c", input: "Dummy C" },
-  { id: 4, value: "d", input: "Dummy D" },
+  { id: 1, value: 1, input: "Dummy 1" },
+  { id: 2, value: 2, input: "Dummy 2" },
+  { id: 3, value: 3, input: "Dummy 3" },
+  { id: 4, value: 4, input: "Dummy 4" },
+  { id: 5, value: 5, input: "Dummy 5" },
 ];
 
 const Appointment = () => {
@@ -24,7 +33,7 @@ const Appointment = () => {
           <Input type="text">Nomor Telepon</Input>
           <InputSelect
             title="Pilih Jenis Layanan"
-            data={dummyData.map((data) => ({
+            data={dummyLayanan.map((data) => ({
               value: data.value,
               input: data.input,
             }))}
