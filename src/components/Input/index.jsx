@@ -1,11 +1,6 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import Email from "@mui/icons-material/EmailOutlined";
-import Lock from "@mui/icons-material/LockOutlined";
-import Human from "@mui/icons-material/AccountCircleOutlined";
-import Calendar from "@mui/icons-material/CalendarToday";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -37,6 +32,7 @@ const Input = ({
   return (
     <div className="m-3">
       <CssTextField
+        fullWidth
         label={children}
         type={type}
         placeholder={placeholder}

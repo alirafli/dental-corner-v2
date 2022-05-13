@@ -6,8 +6,7 @@ import {
   PrimaryCard,
   SecondaryCard,
   Input,
-  Footer,
-  Navbar,
+  InputSelect,
 } from "../components";
 
 const Component = () => {
@@ -57,6 +56,13 @@ const Component = () => {
           <Input type="password" icon="human">
             password
           </Input>
+          <InputSelect
+            title="titlenya disini"
+            data={[
+              { value: "test data", input: "ini data test" },
+              { value: "test data", input: "ini data test" },
+            ]}
+          />
         </div>
       </div>
     </div>
