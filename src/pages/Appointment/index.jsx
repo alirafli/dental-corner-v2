@@ -3,8 +3,10 @@ import React from "react";
 import { Header, Input, Button, InputSelect } from "../../components";
 
 const dummyData = [
-  { id: 1, value: "a", input: "ini A" },
-  { id: 2, value: "b", input: "ini B" },
+  { id: 1, value: "a", input: "Dummy A" },
+  { id: 2, value: "b", input: "Dummy B" },
+  { id: 3, value: "c", input: "Dummy C" },
+  { id: 4, value: "d", input: "Dummy D" },
 ];
 
 const Appointment = () => {
@@ -17,12 +19,25 @@ const Appointment = () => {
           </Header>
         </div>
 
-        <div className="w-1/2 mb-5 text-center">
+        <div className="w-1/2 mb-5">
           <Input type="text">Nama</Input>
           <Input type="text">Nomor Telepon</Input>
-          <Input type="text">Nomor Telepon</Input>
           <InputSelect
-            title="titlenya disini"
+            title="Pilih Jenis Layanan"
+            data={dummyData.map((data) => ({
+              value: data.value,
+              input: data.input,
+            }))}
+          />
+          <InputSelect
+            title="Pilih Dokter"
+            data={dummyData.map((data) => ({
+              value: data.value,
+              input: data.input,
+            }))}
+          />
+          <InputSelect
+            title="Pilih Jadwal"
             data={dummyData.map((data) => ({
               value: data.value,
               input: data.input,
