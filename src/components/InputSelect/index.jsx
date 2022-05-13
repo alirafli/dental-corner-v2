@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -14,7 +13,7 @@ export default function InputSelect({
   ],
 }) {
   return (
-    <Box >
+    <div className="m-3">
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">{title}</InputLabel>
         <Select
@@ -23,10 +22,12 @@ export default function InputSelect({
           label={title}
         >
           {data.map((data, i) => (
-            <MenuItem key={i} value={data.value}>{data.input}</MenuItem>
+            <MenuItem key={i} value={data.value}>
+              {data.input}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
-    </Box>
+    </div>
   );
 }
