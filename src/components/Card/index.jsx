@@ -13,17 +13,19 @@ export const PrimaryCard = ({
     <div className="container drop-shadow-lg bg-white w-52 max-w-card p-5 rounded-md m-2">
       <div>
         <div
-          className="bg-cover bg-center w-52 h-36 rounded-lg mb-2 mx-auto"
+          className="bg-cover bg-center w-52 h-36 rounded-lg mb-6 mx-auto"
           style={{ backgroundImage: `url(${DUMMY})` }}
         />
       </div>
       <div>
-        <Paragraph b1 className="text-gray" bold>
+        <Paragraph b1 className="text-gray">
           {date}
         </Paragraph>
-        <Header h7 bold truncate>
-          {title}
-        </Header>
+        <div className="mt-2">
+          <Header h7 bold truncate>
+            {title}
+          </Header>
+        </div>
       </div>
     </div>
   );
