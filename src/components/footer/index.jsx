@@ -4,7 +4,7 @@ import { Paragraph, Header } from "../";
 
 const footer = () => {
   return (
-    <div className="bg-trueWhite grid grid-rows-3 grid-flow-col gap-4 pt-10">
+    <div className="bg-trueWhite grid grid-rows-3 grid-flow-col gap-4 pt-10 ml-6">
       <img src={LOGO} alt="logo" className="" />
       <div className=""></div>
       <div className=""></div>
