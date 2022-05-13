@@ -8,6 +8,8 @@ export const Header = ({
   h6,
   h7,
   truncate,
+  customStyle,
+  semiBold,
   ...otherProps
 }) => {
   return (
@@ -15,8 +17,16 @@ export const Header = ({
       className={`${h1 && "text-6xl"} ${h2 && "text-5xl"} ${
         h3 && "text-4xl"
       }   ${h6 ? "text-xl" : ""} ${h7 && "text-base"} ${
-        bold ? "font-bold" : `${medium ? "font-medium" : "font-normal"}`
-      } ${truncate ? "truncate" : "whitespace-pre-line"} tracking-wider leading-tight`}
+        bold
+          ? "font-bold"
+          : `${
+              medium
+                ? "font-medium"
+                : `${semiBold ? "font-semibold" : "font-normal"}`
+            }`
+      } ${
+        truncate ? "truncate" : "whitespace-pre-line"
+      } tracking-wider leading-tight ${customStyle}`}
       {...otherProps}
     >
       {children}
@@ -31,14 +41,24 @@ export const Paragraph = ({
   medium,
   truncate,
   h7,
+  customStyle,
+  semiBold,
   ...otherProps
 }) => {
   return (
     <div
       className={`${b1 ? "text-sm" : ""} 
-      ${bold ? "font-semibold" : `${medium ? "font-medium" : "font-normal"}`} ${
-        truncate ? "truncate" : "whitespace-normal"
-      } ${h7 && "text-base"} text-justify 
+      ${
+        bold
+          ? "font-bold"
+          : `${
+              medium
+                ? "font-medium"
+                : `${semiBold ? "font-semibold" : "font-normal"}`
+            }`
+      } ${truncate ? "truncate" : "whitespace-normal"} ${
+        h7 && "text-base"
+      } text-justify  ${customStyle}
       `}
       {...otherProps}
     >

@@ -30,10 +30,15 @@ const Component = () => {
           <Header h2>header h2</Header>
           <Header h3>header h3</Header>
           <Header h6>header h6</Header>
+          <Header h6 bold>header h6 bold</Header>
+          <Header h6 semiBold>header h6 semi bold</Header>
           <Header h7>header h7</Header>
           <Paragraph b1>Paragraph Body 1</Paragraph>
           <Paragraph b1 bold>
             Paragraph Body 1 bold
+          </Paragraph>
+          <Paragraph b1 semiBold>
+            Paragraph Body 1 semi bold
           </Paragraph>
         </div>
         <div className="shadow-2xl p-2">
