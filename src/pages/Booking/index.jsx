@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import JUMBOTRON from "../../assets/img/jumbotron-booking.jpg";
 import { Header, SecondaryCard } from "../../components";
 
@@ -8,6 +9,9 @@ const Booking = () => {
       className="pt-24 pl-20 mb-5 bg-cover bg-center bg-no-repeat h-screen"
       style={{ backgroundImage: `url(${JUMBOTRON})` }}
     >
+      <Helmet>
+        <title>Dental Corner | Booking</title>
+      </Helmet>
       <div className="ml-2 mb-5">
         <Header h3 bold>
           Our Service
@@ -25,11 +29,13 @@ const Booking = () => {
             "Orthodontic",
             "Bleaching",
           ]}
+          linkTo="/appointment"
         />
         <SecondaryCard
           btnContent="Book Consultation"
           title="Consultation"
           content="Pilih jadwal untuk melakukan konsultasi tentang keluhan anda terkait kesehatan gigi"
+          linkTo="/consultation"
         />
       </div>
     </div>

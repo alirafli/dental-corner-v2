@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import { Header, PrimaryCard } from "../../components";
 
 const DummyData = [
@@ -55,6 +56,9 @@ const DummyData = [
 const Article = () => {
   return (
     <div className="mt-40 ml-1 mb-5 px-7">
+      <Helmet>
+        <title>Dental Corner | Article</title>
+      </Helmet>
       <div className="">
         <Header className="font-black text-4xl mb-10 text-center" h3>
           Article

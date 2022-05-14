@@ -3,12 +3,18 @@ import JUMBOTRON from "../../assets/img/jumbotron-register.jpg";
 import LOGO from "../../assets/img/logo.svg";
 import { Header, Input, Button } from "../../components";
 import { Link } from "react-router-dom";
+import Helmet from "react-helmet";
 
 const RegisterPage = () => {
   return (
     <div className="flex">
+      <Helmet>
+        <title>Dental Corner | Register</title>
+      </Helmet>
       <div className="m-6 w-1/2">
-        <img src={LOGO} alt="" />
+        <Link to="/">
+          <img src={LOGO} alt="" />
+        </Link>
         <div className="w-1/2 mb-10 ml-3 text-left mt-24">
           <Header bold h2>
             Register

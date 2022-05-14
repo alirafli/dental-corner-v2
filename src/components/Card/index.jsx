@@ -36,6 +36,7 @@ export const SecondaryCard = ({
   content = "your content",
   btnContent = "button content",
   extra = [],
+  linkTo = "/",
 }) => {
   return (
     <div className="container drop-shadow-lg bg-white w-52 max-w-card p-5 rounded-md m-2 pb-32 mr-10">
@@ -53,7 +54,9 @@ export const SecondaryCard = ({
         </ul>
       </Paragraph>
       <div className="text-center mt-24 absolute bottom-10 left-0 right-0">
-        <Button bold>{btnContent}</Button>
+        <Link to={linkTo}>
+          <Button bold>{btnContent}</Button>
+        </Link>
       </div>
     </div>
   );

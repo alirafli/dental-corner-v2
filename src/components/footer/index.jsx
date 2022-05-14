@@ -1,11 +1,14 @@
 import React from "react";
 import LOGO from "../../assets/img/logo.svg";
 import { Paragraph, Header } from "../";
+import { Link } from "react-router-dom";
 
 const footer = () => {
   return (
     <div className="bg-trueWhite grid grid-rows-3 grid-flow-col gap-4 pt-10 ml-6">
-      <img src={LOGO} alt="logo" className="" />
+      <Link to="/">
+        <img src={LOGO} alt="logo" className="" />
+      </Link>
       <div className=""></div>
       <div className=""></div>
       <div className="">
