@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 //path
@@ -30,23 +30,36 @@ import Appointment from "../pages/Appointment";
 import ArticleContent from "../pages/ArticleContent";
 import Profile from "../pages/Profile";
 
+//auth
+import { AuthContext } from "../auth/Auth";
+
 const RouterConfig = () => {
+  const userId = JSON.parse(localStorage.getItem("id"));
+  const [user, setUser] = useState(userId);
+
+  const setAndGetUserId = (id) => {
+    localStorage.setItem("id", JSON.stringify(id));
+    setUser(id);
+  };
+
   return (
-    <Routes>
-      <Route exact path={LOGIN} element={<LoginPage />} />
-      <Route exact path={REGISTER} element={<RegisterPage />} />
-      <Route element={<Navbar />}>
-        <Route exact path={COMPONENTS} element={<Component />} />
-        <Route exact path={HOME} element={<HomePage />} />
-        <Route exact path={ARTICLE} element={<Article />} />
-        <Route exact path={ARTICLECONTENT} element={<ArticleContent />} />
-        <Route exact path={MEDICALLOG} element={<MedicalLog />} />
-        <Route exact path={BOOKING} element={<Booking />} />
-        <Route exact path={APPOINTMENT} element={<Appointment />} />
-        <Route exact path={CONSULTATION} element={<Consultation />} />
-        <Route exact path={PROFILE} element={<Profile />} />
-      </Route>
-    </Routes>
+    <AuthContext.Provider value={{ user, setAndGetUserId }}>
+      <Routes>
+        <Route exact path={LOGIN} element={<LoginPage />} />
+        <Route exact path={REGISTER} element={<RegisterPage />} />
+        <Route element={<Navbar />}>
+          <Route exact path={COMPONENTS} element={<Component />} />
+          <Route exact path={HOME} element={<HomePage />} />
+          <Route exact path={ARTICLE} element={<Article />} />
+          <Route exact path={ARTICLECONTENT} element={<ArticleContent />} />
+          <Route exact path={MEDICALLOG} element={<MedicalLog />} />
+          <Route exact path={BOOKING} element={<Booking />} />
+          <Route exact path={APPOINTMENT} element={<Appointment />} />
+          <Route exact path={CONSULTATION} element={<Consultation />} />
+          <Route exact path={PROFILE} element={<Profile />} />
+        </Route>
+      </Routes>
+    </AuthContext.Provider>
   );
 };
 
