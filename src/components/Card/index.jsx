@@ -47,7 +47,7 @@ export const SecondaryCard = ({
       </div>
       <Paragraph h7 medium>
         {content}
-        <ul class="list-disc ml-4 mt-3">
+        <ul className="list-disc ml-4 mt-3">
           {extra.map((data, i) => (
             <li key={i}>{data}</li>
           ))}

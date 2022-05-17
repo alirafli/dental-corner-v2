@@ -32,6 +32,7 @@ import Profile from "../pages/Profile";
 
 //auth
 import { AuthContext } from "../auth/Auth";
+import ProtectedRoute from "../auth/ProtectedRoute";
 
 const RouterConfig = () => {
   const userId = JSON.parse(localStorage.getItem("id"));
@@ -54,8 +55,10 @@ const RouterConfig = () => {
           <Route exact path={ARTICLECONTENT} element={<ArticleContent />} />
           <Route exact path={MEDICALLOG} element={<MedicalLog />} />
           <Route exact path={BOOKING} element={<Booking />} />
-          <Route exact path={APPOINTMENT} element={<Appointment />} />
-          <Route exact path={CONSULTATION} element={<Consultation />} />
+          <Route element={<ProtectedRoute />}>
+            <Route exact path={APPOINTMENT} element={<Appointment />} />
+            <Route exact path={CONSULTATION} element={<Consultation />} />
+          </Route>
           <Route exact path={PROFILE} element={<Profile />} />
         </Route>
       </Routes>
