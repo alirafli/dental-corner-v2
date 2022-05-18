@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Helmet from "react-helmet";
 import { Header, Button } from "../../components";
+import endPoint from "../../api/endPoint";
+import { useAuth } from "../../auth/Auth";
 
 const MedicalLog = () => {
+  const { user } = useAuth();
+  const [konsultasi, setkonsultasi] = useState([]);
+  const [profile, setProfile] = useState({
+    id: 0,
+    nama: "",
+    email: "",
+    password: "",
+    alamat: "",
+    jenis_kelamin: "",
+    no_hp: "",
+    createdAt: "",
+    updatedAt: "",
+  });
+
+  useEffect(() => {
+    const getKonsultasi = async () => {
+      const res = await endPoint.get(`konsultasi/${user}`);
+      if (res.status === 200) {
+        console.log(res.data);
+        setkonsultasi(res.data);
+      }
+    };
+    const handleProfile = async () => {
+      const res = await endPoint.get(`user/${user}`);
+      if (res.status === 200) {
+        console.log(res.data);
+        setProfile(res.data);
+      }
+    };
+
+    handleProfile();
+    getKonsultasi();
+  }, []);
+
   return (
     <div className="mt-24 ml-1 mb-5">
       <Helmet>
@@ -19,8 +55,8 @@ const MedicalLog = () => {
         </div>
       </div>
       <div className="mx-14">
-        <div className="mb-2">
-          <table className="table-fixed rounded-md w-full text-sm text-left text-gray-500 bg-primary/40">
+        <table className="table-fixed rounded-md w-full text-sm text-left text-gray-500 bg-primary/40">
+          <tbody>
             <tr>
               <th className="w-2 px-6 py-3">No.</th>
               <th className="w-24 px-6 py-3">Nama</th>
@@ -28,41 +64,20 @@ const MedicalLog = () => {
               <th className="w-24 px-6 py-3">Dokter</th>
               <th className="w-24 px-6 py-3">Tanggal Pemeriksaan</th>
             </tr>
-          </table>
-        </div>
-        <div className="mb-2">
-          <table className="table-fixed rounded-md w-full text-sm text-left text-gray-500 bg-primary/40">
-            <tr>
-              <td className="w-2 px-6 py-3">1.</td>
-              <td className="w-24 px-6 py-3">Catherine Vania</td>
-              <td className="w-24 px-6 py-3">Penghitaman Gigi</td>
-              <td className="w-24 px-6 py-3">Drg. Cynthia Utojo</td>
-              <td className="w-24 px-6 py-3">21 Mei 2022</td>
-            </tr>
-          </table>
-        </div>
-        <div className="mb-2">
-          <table className="table-fixed rounded-md w-full text-sm text-left text-gray-500 bg-primary/40">
-            <tr>
-              <td className="w-2 px-6 py-3">2.</td>
-              <td className="w-24 px-6 py-3">Ali Rafli</td>
-              <td className="w-24 px-6 py-3">Pemutihan Gigi</td>
-              <td className="w-24 px-6 py-3">Drg. Vania Sahda</td>
-              <td className="w-24 px-6 py-3">21 Mei 2022</td>
-            </tr>
-          </table>
-        </div>
-        <div className="mb-2">
-          <table className="table-fixed rounded-md w-full text-sm text-left text-gray-500 bg-primary/40">
-            <tr>
-              <td className="w-2 px-6 py-3">3.</td>
-              <td className="w-24 px-6 py-3">Daffa Yanuardhana</td>
-              <td className="w-24 px-6 py-3">Penghijauan Gigi</td>
-              <td className="w-24 px-6 py-3">Drg. Alika Raflika Replika</td>
-              <td className="w-24 px-6 py-3">21 Mei 2022</td>
-            </tr>
-          </table>
-        </div>
+
+            {konsultasi.map((data, i) => (
+              <tr key={i}>
+                <td className="w-2 px-6 py-3">{++i}</td>
+                <td className="w-24 px-6 py-3">{profile.nama}</td>
+                <td className="w-24 px-6 py-3">Konsultasi</td>
+                <td className="w-24 px-6 py-3">Dr {data.dataDokter.nama}</td>
+                <td className="w-24 px-6 py-3">
+                  {new Date(data.data.tanggal).toLocaleDateString()}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

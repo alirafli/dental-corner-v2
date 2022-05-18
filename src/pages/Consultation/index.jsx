@@ -3,10 +3,11 @@ import Helmet from "react-helmet";
 import { Header, Input, Button, InputSelect } from "../../components";
 
 const dummyData = [
-  { id: 1, value: "a", input: "Dummy A" },
-  { id: 2, value: "b", input: "Dummy B" },
-  { id: 3, value: "c", input: "Dummy C" },
-  { id: 4, value: "d", input: "Dummy D" },
+  { id: 1, value: 1, input: "Senin" },
+  { id: 2, value: 2, input: "Selasa" },
+  { id: 3, value: 3, input: "Rabu" },
+  { id: 4, value: 4, input: "Kamis" },
+  { id: 5, value: 5, input: "Jumat" },
 ];
 
 const Consultation = () => {

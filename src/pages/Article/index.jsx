@@ -70,6 +70,7 @@ const Article = () => {
                 date={data.date}
                 title={data.title}
                 image={data.image}
+                key={id}
               ></PrimaryCard>
             ))}
           </div>
