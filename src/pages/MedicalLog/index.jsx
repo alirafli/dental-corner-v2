@@ -7,6 +7,7 @@ import { useAuth } from "../../auth/Auth";
 const MedicalLog = () => {
   const { user } = useAuth();
   const [konsultasi, setkonsultasi] = useState([]);
+  const [appointment, setAppointment] = useState([]);
   const [profile, setProfile] = useState({
     id: 0,
     nama: "",
@@ -27,6 +28,13 @@ const MedicalLog = () => {
         setkonsultasi(res.data);
       }
     };
+    const getAppointment = async () => {
+      const res = await endPoint.get(`appointment/${user}`);
+      if (res.status === 200) {
+        console.log(res.data);
+        setAppointment(res.data);
+      }
+    };
     const handleProfile = async () => {
       const res = await endPoint.get(`user/${user}`);
       if (res.status === 200) {
@@ -37,6 +45,7 @@ const MedicalLog = () => {
 
     handleProfile();
     getKonsultasi();
+    getAppointment();
   }, []);
 
   return (
@@ -58,7 +67,6 @@ const MedicalLog = () => {
         <table className="table-fixed rounded-md w-full text-sm text-left text-gray-500 bg-primary/40">
           <tbody>
             <tr>
-              <th className="w-2 px-6 py-3">No.</th>
               <th className="w-24 px-6 py-3">Nama</th>
               <th className="w-24 px-6 py-3">Jenis Layanan</th>
               <th className="w-24 px-6 py-3">Dokter</th>
@@ -67,10 +75,25 @@ const MedicalLog = () => {
 
             {konsultasi.map((data, i) => (
               <tr key={i}>
-                <td className="w-2 px-6 py-3">{++i}</td>
-                <td className="w-24 px-6 py-3">{profile.nama}</td>
+                <td className="w-24 px-6 py-3 capitalize">{profile.nama}</td>
                 <td className="w-24 px-6 py-3">Konsultasi</td>
-                <td className="w-24 px-6 py-3">Dr {data.dataDokter.nama}</td>
+                <td className="w-24 px-6 py-3 capitalize ">
+                drg. {data.dataDokter.nama}
+                </td>
+                <td className="w-24 px-6 py-3">
+                  {new Date(data.data.tanggal).toLocaleDateString()}
+                </td>
+              </tr>
+            ))}
+            {appointment.map((data, i) => (
+              <tr key={i}>
+                <td className="w-24 px-6 py-3 capitalize">{profile.nama}</td>
+                <td className="w-24 px-6 py-3">
+                  {data.dataLayanan.nama_layanan}
+                </td>
+                <td className="w-24 px-6 py-3 capitalize ">
+                  drg. {data.dataDokter.nama}
+                </td>
                 <td className="w-24 px-6 py-3">
                   {new Date(data.data.tanggal).toLocaleDateString()}
                 </td>

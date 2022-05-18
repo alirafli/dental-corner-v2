@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Helmet from "react-helmet";
 import { Input, Header, Button } from "../../components";
-import DUMMY from "../../assets/img/pp-dummy.jpg";
+import DUMMY from "../../assets/img/default.jpg";
 import endPoint from "../../api/endPoint";
 import { useAuth } from "../../auth/Auth";
 
@@ -45,7 +45,7 @@ const Profile = () => {
           <div className="w-1/2 ">
             <img src={DUMMY} alt="Dummy" className="rounded-full bg-gray" />
           </div>
-          <div className="w-full  font-black mt-10 ml-10">
+          <div className="w-full  font-black mt-10 ml-10 capitalize">
             <Header bold h3>
               {profile.nama}
             </Header>

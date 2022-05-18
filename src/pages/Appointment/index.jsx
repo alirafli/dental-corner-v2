@@ -1,7 +1,9 @@
-import { Label } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Helmet from "react-helmet";
-import { Header, Input, Button, InputSelect } from "../../components";
+import endPoint from "../../api/endPoint";
+import { Header, Button, InputSelect } from "../../components";
+import { useAuth } from "../../auth/Auth";
+import { useNavigate } from "react-router-dom";
 
 const dummyLayanan = [
   { id: 1, value: 1, input: "Scalling" },
@@ -12,14 +14,66 @@ const dummyLayanan = [
 ];
 
 const dummyData = [
-  { id: 1, value: 1, input: "Dummy 1" },
-  { id: 2, value: 2, input: "Dummy 2" },
-  { id: 3, value: 3, input: "Dummy 3" },
-  { id: 4, value: 4, input: "Dummy 4" },
-  { id: 5, value: 5, input: "Dummy 5" },
+  { id: 1, value: 1, input: "Senin" },
+  { id: 2, value: 2, input: "Selasa" },
+  { id: 3, value: 3, input: "Rabu" },
+  { id: 4, value: 4, input: "Kamis" },
+  { id: 5, value: 5, input: "Jumat" },
 ];
 
 const Appointment = () => {
+  const { user } = useAuth();
+  const [Dokter, setDokter] = useState([]);
+  const [layanan, setLayanan] = useState([]);
+  const [DokterChange, setDokterChange] = useState("");
+  const [layananChange, setlayananChange] = useState("");
+  const [pesanApp, setPesanApp] = useState({
+    tanggal: Date.now(),
+    user_id: user,
+    dokter_id: DokterChange,
+    layanan_id: layananChange,
+  });
+  // console.log(pesanApp);
+  const navigate = useNavigate();
+
+  const addAppointment = async () => {
+    const res = await endPoint.post("appointment", {
+      jenis: "",
+      tanggal: pesanApp.tanggal,
+      layanan_id: layananChange,
+      user_id: user,
+      dokter_id: DokterChange,
+    });
+    if (res.status === 200) {
+      console.log(res.data);
+      navigate("/", { replace: true });
+    }
+  };
+
+  useEffect(() => {
+    const getDokter = async () => {
+      const res = await endPoint.get(`dokter`);
+      if (res.status === 200) {
+        // console.log(res.data);
+        setDokter(res.data);
+      }
+    };
+    const getLayanan = async () => {
+      const res = await endPoint.get(`layanan`);
+      if (res.status === 200) {
+        // console.log(res.data);
+        setLayanan(res.data);
+      }
+    };
+    getDokter();
+    getLayanan();
+  }, []);
+  const handleChange = (event) => {
+    setDokterChange(event.target.value);
+  };
+  const layananChanges = (event) => {
+    setlayananChange(event.target.value);
+  };
   return (
     <div className="mt-24 ml-1 mb-5 px-7">
       <Helmet>
@@ -33,21 +87,23 @@ const Appointment = () => {
         </div>
 
         <div className="w-1/2">
-          <Input type="text">Nama</Input>
-          <Input type="text">Nomor Telepon</Input>
           <InputSelect
             title="Pilih Jenis Layanan"
-            data={dummyLayanan.map((data) => ({
-              value: data.value,
-              input: data.input,
+            value={layananChange}
+            data={layanan.map((data) => ({
+              value: data.id,
+              input: data.nama_layanan,
             }))}
+            onChange={layananChanges}
           />
           <InputSelect
             title="Pilih Dokter"
-            data={dummyData.map((data) => ({
-              value: data.value,
-              input: data.input,
+            value={DokterChange}
+            data={Dokter.map((data) => ({
+              value: data.id,
+              input: data.nama,
             }))}
+            onChange={handleChange}
           />
           <InputSelect
             title="Pilih Jadwal"
@@ -57,7 +113,10 @@ const Appointment = () => {
             }))}
           />
           <div className="text-center">
-            <Button className="w-1/2 h-10 my-10 text center">
+            <Button
+              className="w-1/2 h-10 my-10 text center"
+              onClick={addAppointment}
+            >
               Pesan Sekarang
             </Button>
           </div>
