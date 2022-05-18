@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "https://shrouded-sea-21115.herokuapp.com/api",
   header: {
     "Access-Control-Allow-Origin": "*",
   },
