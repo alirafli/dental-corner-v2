@@ -60,25 +60,24 @@ const MedicalLog = () => {
           </Header>
         </div>
         <div className="flex justify-end h-14">
-          <Button bold>Sort By</Button>
         </div>
       </div>
       <div className="mx-14">
         <table className="table-fixed rounded-md w-full text-sm text-left text-gray-500 bg-primary/40">
           <tbody>
-            <tr>
-              <th className="w-24 px-6 py-3">Nama</th>
+            <tr className="border-8 border-white">
+              <th className="w-24 px-6 py-3 ">Nama</th>
               <th className="w-24 px-6 py-3">Jenis Layanan</th>
               <th className="w-24 px-6 py-3">Dokter</th>
               <th className="w-24 px-6 py-3">Tanggal Pemeriksaan</th>
             </tr>
 
             {konsultasi.map((data, i) => (
-              <tr key={i}>
+              <tr key={i} className="border-8 border-white">
                 <td className="w-24 px-6 py-3 capitalize">{profile.nama}</td>
                 <td className="w-24 px-6 py-3">Konsultasi</td>
                 <td className="w-24 px-6 py-3 capitalize ">
-                drg. {data.dataDokter.nama}
+                  drg. {data.dataDokter.nama}
                 </td>
                 <td className="w-24 px-6 py-3">
                   {new Date(data.data.tanggal).toLocaleDateString()}
@@ -86,7 +85,7 @@ const MedicalLog = () => {
               </tr>
             ))}
             {appointment.map((data, i) => (
-              <tr key={i}>
+              <tr key={i} className="border-8 border-white">
                 <td className="w-24 px-6 py-3 capitalize">{profile.nama}</td>
                 <td className="w-24 px-6 py-3">
                   {data.dataLayanan.nama_layanan}

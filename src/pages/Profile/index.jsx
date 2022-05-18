@@ -49,7 +49,6 @@ const Profile = () => {
             <Header bold h3>
               {profile.nama}
             </Header>
-            <Button className="w-fit mt-3">Edit Profile</Button>
           </div>
         </div>
         <div className="w-1/2 mt-7">
