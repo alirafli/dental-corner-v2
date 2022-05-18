@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Helmet from "react-helmet";
 import { Header, Input, Button, InputSelect } from "../../components";
+import endPoint from "../../api/endPoint";
+import { useAuth } from "../../auth/Auth";
 
-const dummyData = [
+const day = [
   { id: 1, value: 1, input: "Senin" },
   { id: 2, value: 2, input: "Selasa" },
   { id: 3, value: 3, input: "Rabu" },
@@ -11,6 +13,38 @@ const dummyData = [
 ];
 
 const Consultation = () => {
+  const { user } = useAuth();
+  const [Dokter, setDokter] = useState([]);
+  const [DokterChange, setDokterChange] = useState("");
+  const [pesanKonsul, setPesanKonsul] = useState({
+    tanggal: "",
+    user_id: user,
+    dokter_id: 1,
+  });
+  // console.log(pesanKonsul);
+  const addKonsultasi = async () => {
+    const res = await endPoint.post("konsultasi", {
+      tanggal: Date.now,
+      user_id: pesanKonsul.user_id,
+      dokter_id: DokterChange,
+    });
+    if (res.status === 200) {
+      console.log(res.data);
+    }
+  };
+  useEffect(() => {
+    const getDokter = async () => {
+      const res = await endPoint.get(`dokter`);
+      if (res.status === 200) {
+        // console.log(res.data);
+        setDokter(res.data);
+      }
+    };
+    getDokter();
+  }, []);
+  const handleChange = (event) => {
+    setDokterChange(event.target.value);
+  };
   return (
     <div className="mt-24 ml-1 mb-5 px-7">
       <Helmet>
@@ -24,24 +58,27 @@ const Consultation = () => {
         </div>
 
         <div className="w-1/2 mb-5">
-          <Input type="text">Nama</Input>
-          <Input type="text">Nomor Telepon</Input>
           <InputSelect
             title="Pilih Dokter"
-            data={dummyData.map((data) => ({
-              value: data.value,
-              input: data.input,
+            value={DokterChange}
+            data={Dokter.map((data) => ({
+              value: data.id,
+              input: data.nama,
             }))}
+            onChange={handleChange}
           />
           <InputSelect
             title="Pilih Jadwal"
-            data={dummyData.map((data) => ({
+            data={day.map((data) => ({
               value: data.value,
               input: data.input,
             }))}
           />
           <div className="text-center">
-            <Button className="w-1/2 h-10 my-10 text center">
+            <Button
+              className="w-1/2 h-10 my-10 text center"
+              onClick={addKonsultasi}
+            >
               Pesan Sekarang
             </Button>
           </div>

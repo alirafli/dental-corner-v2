@@ -11,6 +11,7 @@ export default function InputSelect({
     { value: 20, input: "Dummy2" },
     { value: 30, input: "Dummy3" },
   ],
+  ...otherProps
 }) {
   return (
     <div className="m-3">
@@ -20,6 +21,8 @@ export default function InputSelect({
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label={title}
+          defaultValue=""
+          {...otherProps}
         >
           {data.map((data, i) => (
             <MenuItem key={i} value={data.value}>
