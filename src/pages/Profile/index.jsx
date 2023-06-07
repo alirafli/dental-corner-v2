@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Helmet from "react-helmet";
-import { Input, Header, Button } from "../../components";
+import { Input, Header } from "../../components";
 import DUMMY from "../../assets/img/default.jpg";
-import endPoint from "../../api/endPoint";
-import { useAuth } from "../../auth/Auth";
 
 const Profile = () => {
-  const { user } = useAuth();
   const [profile, setProfile] = useState({
     id: 0,
     nama: "",
@@ -18,22 +15,6 @@ const Profile = () => {
     createdAt: "",
     updatedAt: "",
   });
-
-  useEffect(() => {
-    const handleProfile = async () => {
-  
-      const res = await endPoint.get(`user/${user}`);
-      if (res.status === 200) {
-        console.log(res.data);
-        setProfile(res.data)
-      }
-    };
-
-    handleProfile()
-  }, [])
-  
-
-  
 
   return (
     <div className="mt-24 ml-1 mb-5">

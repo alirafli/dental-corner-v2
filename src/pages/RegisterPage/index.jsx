@@ -4,12 +4,12 @@ import LOGO from "../../assets/img/logo.svg";
 import { Header, Input, Button } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
 import Helmet from "react-helmet";
-import { useAuth } from "../../auth/Auth";
-import endPoint from "../../api/endPoint";
+import { useAuthFirebase } from "../../context/AuthContext";
 
 const RegisterPage = () => {
-  const { setAndGetUserId } = useAuth();
   const navigate = useNavigate();
+  const { signup, addUserDocument } = useAuthFirebase();
+
   const [register, setRegister] = useState({
     nama: "",
     email: "",
@@ -20,31 +20,19 @@ const RegisterPage = () => {
   });
 
   const handleUserLogin = async () => {
-    const res = await endPoint.post("user/login", {
-      email: register.email,
-      password: register.password,
-    });
-    if (res.status === 200) {
-      console.log(res.data);
-      setAndGetUserId(res.data.id);
-      navigate("/", { replace: true });
-    }
+    console.log(register);
   };
 
   const handleRegister = async (e) => {
+    const { nama, email, alamat, jenis_kelamin, no_hp } = register;
     e.preventDefault();
-
-    const res = await endPoint.post("user", {
-      nama: register.nama,
-      email: register.email,
-      password: register.password,
-      alamat: register.alamat,
-      jenis_kelamin: register.alamat,
-      no_hp: register.no_hp,
-    });
-    if (res.status === 200) {
-      console.log(res.data);
+    try {
+      await signup(register.email, register.password);
+      await addUserDocument(email, nama, alamat, jenis_kelamin, no_hp);
+      navigate("/");
       handleUserLogin();
+    } catch (error) {
+      alert(error);
     }
   };
 

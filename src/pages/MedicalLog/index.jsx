@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Helmet from "react-helmet";
 import { Header, Button } from "../../components";
-import endPoint from "../../api/endPoint";
-import { useAuth } from "../../auth/Auth";
 
 const MedicalLog = () => {
-  const { user } = useAuth();
   const [konsultasi, setkonsultasi] = useState([]);
   const [appointment, setAppointment] = useState([]);
   const [profile, setProfile] = useState({
@@ -20,34 +17,6 @@ const MedicalLog = () => {
     updatedAt: "",
   });
 
-  useEffect(() => {
-    const getKonsultasi = async () => {
-      const res = await endPoint.get(`konsultasi/${user}`);
-      if (res.status === 200) {
-        console.log(res.data);
-        setkonsultasi(res.data);
-      }
-    };
-    const getAppointment = async () => {
-      const res = await endPoint.get(`appointment/${user}`);
-      if (res.status === 200) {
-        console.log(res.data);
-        setAppointment(res.data);
-      }
-    };
-    const handleProfile = async () => {
-      const res = await endPoint.get(`user/${user}`);
-      if (res.status === 200) {
-        console.log(res.data);
-        setProfile(res.data);
-      }
-    };
-
-    handleProfile();
-    getKonsultasi();
-    getAppointment();
-  }, []);
-
   return (
     <div className="mt-24 ml-1 mb-5">
       <Helmet>
@@ -59,8 +28,7 @@ const MedicalLog = () => {
             Medical Log
           </Header>
         </div>
-        <div className="flex justify-end h-14">
-        </div>
+        <div className="flex justify-end h-14"></div>
       </div>
       <div className="mx-14">
         <table className="table-fixed rounded-md w-full text-sm text-left text-gray-500 bg-primary/40">

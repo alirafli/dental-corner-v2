@@ -1,19 +1,15 @@
 import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Paragraph, Button, Footer } from "../";
-import { useAuth } from "../../auth/Auth";
 import LOGO from "../../assets/img/logo.svg";
 import DUMMY from "../../assets/img/default.jpg";
+import { useAuthFirebase } from "../../context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { user, setAndGetUserId } = useAuth();
+  const { user } = useAuthFirebase();
 
-  const logout = () => {
-    setAndGetUserId();
-    localStorage.clear();
-    navigate("/login", { replace: true });
-  };
+  const logout = () => {};
 
   return (
     <div>
@@ -58,7 +54,11 @@ const Navbar = () => {
               </Button>
               <Link to="/profile">
                 <div className="bg-gray rounded-full w-10 h-10">
-                  <img src={DUMMY} alt="test" className="bg-gray rounded-full" />
+                  <img
+                    src={DUMMY}
+                    alt="test"
+                    className="bg-gray rounded-full"
+                  />
                 </div>
               </Link>
               <Button onClick={logout} className="ml-11">

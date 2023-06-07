@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Helmet from "react-helmet";
-import endPoint from "../../api/endPoint";
 import { Header, Button, InputSelect } from "../../components";
-import { useAuth } from "../../auth/Auth";
 import { useNavigate } from "react-router-dom";
 
 const dummyLayanan = [
@@ -22,7 +20,6 @@ const dummyData = [
 ];
 
 const Appointment = () => {
-  const { user } = useAuth();
   const [Dokter, setDokter] = useState([]);
   const [layanan, setLayanan] = useState([]);
   const [DokterChange, setDokterChange] = useState("");
@@ -36,38 +33,8 @@ const Appointment = () => {
   // console.log(pesanApp);
   const navigate = useNavigate();
 
-  const addAppointment = async () => {
-    const res = await endPoint.post("appointment", {
-      jenis: "",
-      tanggal: pesanApp.tanggal,
-      layanan_id: layananChange,
-      user_id: user,
-      dokter_id: DokterChange,
-    });
-    if (res.status === 200) {
-      console.log(res.data);
-      navigate("/", { replace: true });
-    }
-  };
+  const addAppointment = async () => {};
 
-  useEffect(() => {
-    const getDokter = async () => {
-      const res = await endPoint.get(`dokter`);
-      if (res.status === 200) {
-        // console.log(res.data);
-        setDokter(res.data);
-      }
-    };
-    const getLayanan = async () => {
-      const res = await endPoint.get(`layanan`);
-      if (res.status === 200) {
-        // console.log(res.data);
-        setLayanan(res.data);
-      }
-    };
-    getDokter();
-    getLayanan();
-  }, []);
   const handleChange = (event) => {
     setDokterChange(event.target.value);
   };

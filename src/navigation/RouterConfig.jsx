@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 //path
@@ -29,25 +29,17 @@ import Consultation from "../pages/Consultation";
 import Appointment from "../pages/Appointment";
 import ArticleContent from "../pages/ArticleContent";
 import Profile from "../pages/Profile";
-
-//auth
-import { AuthContext } from "../auth/Auth";
-import ProtectedRoute from "../auth/ProtectedRoute";
+import PrivateRoute from "./PrivateRoute";
+import AuthRoute from "./AuthRoute";
 
 const RouterConfig = () => {
-  const userId = JSON.parse(localStorage.getItem("id"));
-  const [user, setUser] = useState(userId);
-
-  const setAndGetUserId = (id) => {
-    localStorage.setItem("id", JSON.stringify(id));
-    setUser(id);
-  };
-
   return (
-    <AuthContext.Provider value={{ user, setAndGetUserId }}>
-      <Routes>
+    <Routes>
+      <Route element={<AuthRoute />}>
         <Route exact path={LOGIN} element={<LoginPage />} />
         <Route exact path={REGISTER} element={<RegisterPage />} />
+      </Route>
+      <Route element={<PrivateRoute />}>
         <Route element={<Navbar />}>
           <Route exact path={COMPONENTS} element={<Component />} />
           <Route exact path={HOME} element={<HomePage />} />
@@ -55,14 +47,12 @@ const RouterConfig = () => {
           <Route exact path={ARTICLECONTENT} element={<ArticleContent />} />
           <Route exact path={MEDICALLOG} element={<MedicalLog />} />
           <Route exact path={BOOKING} element={<Booking />} />
-          <Route element={<ProtectedRoute />}>
-            <Route exact path={APPOINTMENT} element={<Appointment />} />
-            <Route exact path={CONSULTATION} element={<Consultation />} />
-          </Route>
+          <Route exact path={APPOINTMENT} element={<Appointment />} />
+          <Route exact path={CONSULTATION} element={<Consultation />} />
           <Route exact path={PROFILE} element={<Profile />} />
         </Route>
-      </Routes>
-    </AuthContext.Provider>
+      </Route>
+    </Routes>
   );
 };
 

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Helmet from "react-helmet";
 import { Header, Input, Button, InputSelect } from "../../components";
-import endPoint from "../../api/endPoint";
-import { useAuth } from "../../auth/Auth";
 import { useNavigate } from "react-router-dom";
 
 const day = [
@@ -14,7 +12,6 @@ const day = [
 ];
 
 const Consultation = () => {
-  const { user } = useAuth();
   const [Dokter, setDokter] = useState([]);
   const [DokterChange, setDokterChange] = useState("");
   const [pesanKonsul, setPesanKonsul] = useState({
@@ -25,27 +22,8 @@ const Consultation = () => {
   // console.log(pesanKonsul);
   const navigate = useNavigate();
 
-  const addKonsultasi = async () => {
-    const res = await endPoint.post("konsultasi", {
-      tanggal: Date.now(),
-      user_id: pesanKonsul.user_id,
-      dokter_id: DokterChange,
-    });
-    if (res.status === 200) {
-      console.log(res.data);
-      navigate("/", { replace: true });
-    }
-  };
-  useEffect(() => {
-    const getDokter = async () => {
-      const res = await endPoint.get(`dokter`);
-      if (res.status === 200) {
-        // console.log(res.data);
-        setDokter(res.data);
-      }
-    };
-    getDokter();
-  }, []);
+  const addKonsultasi = async () => {};
+
   const handleChange = (event) => {
     setDokterChange(event.target.value);
   };

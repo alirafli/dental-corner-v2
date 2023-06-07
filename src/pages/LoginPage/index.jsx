@@ -4,12 +4,12 @@ import LOGO from "../../assets/img/logo.svg";
 import { Header, Input, Button } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
 import Helmet from "react-helmet";
-import endPoint from "../../api/endPoint";
-import { useAuth } from "../../auth/Auth";
+import { useAuthFirebase } from "../../context/AuthContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { setAndGetUserId } = useAuth();
+  const { signin } = useAuthFirebase();
+
   const [Login, setLogin] = useState({
     email: "",
     password: "",
@@ -17,14 +17,12 @@ const LoginPage = () => {
 
   const handleUserLogin = async (e) => {
     e.preventDefault();
-    const res = await endPoint.post("user/login", {
-      email: Login.email,
-      password: Login.password,
-    });
-    if (res.status === 200) {
-      console.log(res.data);
-      setAndGetUserId(res.data.id);
-      navigate("/", { replace: true });
+    const { email, password } = Login;
+    try {
+      await signin(email, password);
+      navigate("/");
+    } catch (error) {
+      alert(error);
     }
   };
   return (
